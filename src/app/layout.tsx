@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import FixedBar from "@/components/ui/FixedBar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { notFound } from "next/navigation";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,12 +27,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
+  return (    
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased w-screen h-dvh max-h-dvh flex flex-col bg-zinc-100 dark:bg-neutral-900 dark:text-zinc-300`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem          
+          disableTransitionOnChange          
+        >        
+          <div className="flex-1 overflow-y-scroll">
+            {children}
+          </div>          
+          <FixedBar/>
+        </ThemeProvider>
       </body>
     </html>
   );
