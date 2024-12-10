@@ -20,7 +20,7 @@ export default function RootLayout({
       <AppContext>
         <html lang="en" suppressHydrationWarning>
           <body
-            className={`antialiased w-screen h-dvh max-h-dvh flex flex-col bg-zinc-100 dark:bg-neutral-900 dark:text-zinc-300`}
+            className={`scroll-smooth antialiased w-screen h-dvh max-h-dvh flex flex-col bg-zinc-100 dark:bg-neutral-900 dark:text-zinc-300`}
           >
             <ThemeProvider
               attribute="class"

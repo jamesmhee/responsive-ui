@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Image from 'next/image'
 import { useAppContext } from '@/app/context/AppContext'
 import { MdAttachMoney } from "react-icons/md";
+import Link from 'next/link'
 
 
 const SkeltonItem = ({length}: {length: number}) =>{
@@ -24,7 +25,7 @@ const HomeItem = () => {
     const { data, setData } = useAppContext()
     const { data:productsData, isLoading, isError, error } = useFetchProducts(data?.length > 0)
     useEffect(()=>{
-        if(productsData){            
+        if(productsData){
             setData((prev)=>productsData)
         }
     }, [productsData])
@@ -37,12 +38,12 @@ const HomeItem = () => {
                 isLoading ? <SkeltonItem length={6}/> : 
                 data?.map((elm,index)=>(
                     <div key={index} className='bg-white flex-1 basis-2/5 min-h-[300px] dark:bg-zinc-800 p-2 border rounded-xl justify-between flex-col flex'>
-                        <div>
+                        <Link scroll={false} href={`/product/${elm.id}`}>
                             <Image className='rounded mb-2' width={500} height={500} style={{height: '150px', width: '100%'}} alt={elm.title} src={elm.image}/>
                             <span className='text-base'>
                                 {elm.title.substring(0, 35)}
                             </span>
-                        </div>
+                        </Link>
                         <div className='flex items-center'>
                             <span className='text-xl'><MdAttachMoney/></span>
                             <p className='text-sm'>

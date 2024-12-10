@@ -20,7 +20,7 @@ const HomeCarousel = () => {
                     data.length > 0 ? 
                     data?.map((elm,index)=>(
                         <CarouselItem key={index} className="rounded-xl bg-white dark:bg-zinc-800 shadow-sm border max-w-[calc(100vw_-_100px)] flex items-center justify-center pr-4 object-contain">
-                            <Image className="rounded" objectFit="contain" alt={elm.title} src={elm.image} width={500} height={500} style={{minWidth: '150px', maxWidth: '300px', height: '160px'}}/>
+                            <Image priority className="rounded" alt={elm.title} src={elm.image} width={500} height={500} style={{minWidth: '150px', maxWidth: '300px', height: '160px', objectFit: 'contain'}}/>
                         </CarouselItem>
                     ))
                     : 
