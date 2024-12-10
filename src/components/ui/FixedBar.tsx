@@ -22,16 +22,17 @@ const FixedBar = () => {
     findActive()
   }, [pathname])
 
+
   return (
     <div className="basis-20 w-full flex">
-      <ul className="flex items-center justify-between w-full px-5 border bg-white shadow-md shadow-neutral-600 dark:bg-zinc-800">
-        <Link href="/">
+      <ul className="flex items-center justify-between w-full px-5 border bg-white shadow-md shadow-neutral-600 dark:bg-zinc-800">        
+        <Link href="/" className={isActive === 'home' ? 'pointer-events-none' : ''}>          
           <li className={"w-16 cursor-pointer " + (isActive === 'home' ? 'font-semibold text-blue-500 dark:text-zinc-500' : '')}>Home</li>
         </Link>
-        <Link href="cart">          
+        <Link href="cart" className={isActive === 'cart' ? 'pointer-events-none' : ''}>          
           <li className={"w-16 cursor-pointer text-5xl " + (isActive === 'cart' ? 'font-semibold text-blue-500 dark:text-zinc-500' : '')}><PiShoppingCartFill/></li>          
         </Link>
-        <Link href="setting">
+        <Link href="setting" className={isActive === 'setting' ? 'pointer-events-none' : ''}>          
           <li className={"w-12 cursor-pointer " + (isActive === 'setting' ? 'font-semibold text-blue-500 dark:text-zinc-500' : '')}>Setting</li>
         </Link>        
       </ul>
