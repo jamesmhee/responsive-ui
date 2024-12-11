@@ -6,7 +6,9 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { AppContext } from "./context/AppContext";
+import { AppContext, useAppContext } from "./context/AppContext";
+import { useEffect, useRef, useState } from "react";
+import { useFetchProducts } from "@/hooks/useFetchProducts";
 
 const queryClient = new QueryClient()
 
@@ -30,7 +32,7 @@ export default function RootLayout({
             >        
               <div className="flex-1 overflow-y-scroll">
                 {children}
-              </div>          
+              </div>              
               <FixedBar/>
             </ThemeProvider>
           </body>

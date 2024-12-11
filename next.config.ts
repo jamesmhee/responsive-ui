@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    scrollRestoration: false,
+    scrollRestoration: true,
 },
 };
 

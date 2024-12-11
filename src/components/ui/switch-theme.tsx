@@ -15,7 +15,7 @@ import {
 export function SwitchTheme() {
   const { setTheme } = useTheme()
 
-  return (
+  return (    
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">

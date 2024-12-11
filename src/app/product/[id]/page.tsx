@@ -22,42 +22,42 @@ const page = () => {
     window.scrollTo(0, 0)
   }, [Product])    
   return (
-    <>
-      {        
-        data.id &&
-        <>
-          <div className='sticky top-0 bg-yellow-400 p-5 flex justify-between items-center'>
-            <Link scroll={false} href="/">
-              <div className='text-zinc-50 dark:text-zinc-300 bg-yellow-500 rounded-full p-2 w-full'>
-                <IoChevronBack/>
-              </div>
-            </Link>
-            <span className='text-right'>
-              {data.title}
-            </span>
-          </div>
-          <div className='flex w-full justify-center'>
-            <div className='flex flex-col w-full justify-center m-2 p-2 border rounded-sm bg-white dark:bg-zinc-800'>
-            <div className='w-full flex justify-end my-1'>
-              <span className='px-2 border w-max rounded-xl text-sm bg-yellow-400 bg-opacity-65'>{data.category.toUpperCase()}</span>
+    <>      
+        <div className='sticky top-0 bg-yellow-400 p-5 flex justify-between items-center'>
+          <Link scroll={false} href="/">
+            <div className='text-zinc-50 dark:text-zinc-300 bg-yellow-500 rounded-full p-2 w-full'>
+              <IoChevronBack/>
             </div>
-              <Image className='mx-auto' priority alt={data.title} src={data.image} width={500} height={500} style={{minWidth: '200px', maxWidth: '200px', height: 'auto'}}/>
-              <div className='inline-flex items-center gap-1 justify-start w-full'>
-                <span><MdAttachMoney/></span>
-                <span className='font-semibold text-xl'>{data.price}</span>
-              </div>                            
-              <div className='inline-flex items-center gap-1 justify-start w-full'>
-                <span className='inline-flex items-center gap-1'><FaStar className='text-yellow-400'/> {data.rating.rate}/5.0</span>
-                <span className='inline-flex items-center gap-1'>Total Sold: {data.rating.count}</span>
+          </Link>
+          <span className='text-right'>
+            {data?.title}
+          </span>
+        </div>        
+        {
+          data.id &&
+          <>
+            <div className='flex w-full justify-center'>
+              <div className='flex flex-col w-full justify-center m-2 p-2 border rounded-sm bg-white dark:bg-zinc-800'>
+              <div className='w-full flex justify-end my-1'>
+                <span className='px-2 border w-max rounded-xl text-sm bg-yellow-400 bg-opacity-65'>{data.category.toUpperCase()}</span>
               </div>
-              <div className='flex flex-col'>
-                <p>Items Description: </p>
-                <h3 className='text-sm'>{data.description}</h3>
+                <Image className='mx-auto' priority alt={data.title} src={data.image} width={500} height={500} style={{minWidth: '200px', maxWidth: '200px', height: 'auto'}}/>
+                <div className='inline-flex items-center gap-1 justify-start w-full'>
+                  <span><MdAttachMoney/></span>
+                  <span className='font-semibold text-xl'>{data.price}</span>
+                </div>                            
+                <div className='inline-flex items-center gap-1 justify-start w-full'>
+                  <span className='inline-flex items-center gap-1'><FaStar className='text-yellow-400'/> {data.rating.rate}/5.0</span>
+                  <span className='inline-flex items-center gap-1'>Total Sold: {data.rating.count}</span>
+                </div>
+                <div className='flex flex-col'>
+                  <p>Items Description: </p>
+                  <h3 className='text-sm'>{data.description}</h3>
+                </div>
               </div>
-            </div>
-          </div>        
-        </>
-      }
+            </div>        
+          </>                
+        }
     </>
   )
 }
