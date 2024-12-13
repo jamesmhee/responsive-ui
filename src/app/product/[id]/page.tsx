@@ -8,6 +8,7 @@ import { MdAttachMoney } from "react-icons/md";
 import { IoChevronBack } from "react-icons/io5";
 import { ProductsProps } from '@/app/interface/Products'
 import { FaStar } from "react-icons/fa";
+import Loading from '@/components/ui/loading'
 
 
 const page = () => {
@@ -23,9 +24,9 @@ const page = () => {
   }, [Product])    
   return (
     <>      
-        <div className='sticky top-0 bg-yellow-400 p-5 flex justify-between items-center'>
+        <div className='sticky top-0 bg-yellow-400 dark:bg-zinc-800 p-5 flex justify-between items-center'>
           <Link scroll={false} href="/">
-            <div className='text-zinc-50 dark:text-zinc-300 bg-yellow-500 rounded-full p-2 w-full'>
+            <div className='text-zinc-50 dark:text-zinc-300 bg-yellow-500 dark:bg-zinc-950 rounded-full p-2 w-full'>
               <IoChevronBack/>
             </div>
           </Link>
@@ -34,12 +35,13 @@ const page = () => {
           </span>
         </div>        
         {
+          isLoading ? <Loading/> :
           data.id &&
           <>
             <div className='flex w-full justify-center'>
               <div className='flex flex-col w-full justify-center m-2 p-2 border rounded-sm bg-white dark:bg-zinc-800'>
-              <div className='w-full flex justify-end my-1'>
-                <span className='px-2 border w-max rounded-xl text-sm bg-yellow-400 bg-opacity-65'>{data.category.toUpperCase()}</span>
+              <div className='w-full flex justify-end my-2'>
+                <span className='px-2 border w-max rounded-xl text-sm bg-yellow-400 dark:bg-zinc-600 bg-opacity-65'>{data.category.toUpperCase()}</span>
               </div>
                 <Image className='mx-auto' priority alt={data.title} src={data.image} width={500} height={500} style={{minWidth: '200px', maxWidth: '200px', height: 'auto'}}/>
                 <div className='inline-flex items-center gap-1 justify-start w-full'>

@@ -30,7 +30,7 @@ export default function RootLayout({
               enableSystem          
               disableTransitionOnChange          
             >        
-              <div className="flex-1 overflow-y-scroll">
+              <div className="flex-1 overflow-y-scroll max-w-screen">
                 {children}
               </div>              
               <FixedBar/>
