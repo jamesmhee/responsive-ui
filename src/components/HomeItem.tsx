@@ -1,6 +1,5 @@
 'use client'
 
-import { useFetchProducts } from '@/hooks/useFetchProducts'
 import React, { useEffect } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
 import Image from 'next/image'
@@ -22,14 +21,32 @@ const SkeltonItem = ({length}: {length: number}) =>{
 }
 
 const HomeItem = () => {
-    const { data, isLoading } = useAppContext()
+    const { data, isLoading, searchData } = useAppContext()
   return (
-    <div className='m-2 flex flex-wrap gap-2 flex-col'>
+    <div className='flex flex-wrap gap-2 flex-col mt-10 mb-5 px-2'>
         <h3 className='dark:text-zinc-300'>สินค้าทั้งหมด</h3>
         <div className='flex flex-wrap gap-2'>            
             {
-                isLoading ? <SkeltonItem length={6}/> : 
-                data?.length > 0 &&
+                isLoading ? <SkeltonItem length={6}/> :
+                
+                searchData && searchData?.length > 0 ? 
+                searchData?.map((elm,index)=>(
+                    <div key={index} className='bg-white flex-1 basis-2/5 min-h-[300px] dark:bg-zinc-800 p-2 border rounded-xl justify-between flex-col flex'>
+                        <Link scroll={false} href={`/product/${elm.id}`}>
+                            <Image className='rounded mb-2' width={500} height={500} style={{height: '200px', width: '100%'}} alt={elm.title} src={elm.image}/>
+                            <span className='text-base'>
+                                {elm.title.substring(0, 35)}
+                            </span>
+                        </Link>
+                        <div className='flex items-center'>
+                            <span className='text-xl'><MdAttachMoney/></span>
+                            <p className='text-sm'>
+                                {elm.price}
+                            </p>
+                        </div>
+                    </div>
+                ))                
+                :
                 data?.map((elm,index)=>(
                     <div key={index} className='bg-white flex-1 basis-2/5 min-h-[300px] dark:bg-zinc-800 p-2 border rounded-xl justify-between flex-col flex'>
                         <Link scroll={false} href={`/product/${elm.id}`}>
