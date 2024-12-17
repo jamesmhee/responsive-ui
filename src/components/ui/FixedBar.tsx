@@ -29,17 +29,17 @@ const FixedBar = () => {
   return (
     <div className="basis-20 w-full flex max-h-16">
       <ul className="flex items-center justify-center w-full px-5 border bg-white shadow-md shadow-neutral-600 dark:bg-zinc-900 h-full">        
-        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'home' ? 'bg-zinc-800' : '')}>
+        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'home' ? 'dark:bg-zinc-800 bg-zinc-100 bg-opacity-70' : '')}>
           <Link href="/" className={isActive === 'home' ? 'pointer-events-none' : ''}>          
             <li className={"cursor-pointer text-3xl " + (isActive === 'home' ? 'text-yellow-400 dark:text-zinc-500' : '' )}><GoHomeFill /></li>
           </Link>
         </div>
-        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'cart' ? 'bg-zinc-800' : '')}>
+        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'cart' ? 'dark:bg-zinc-800 bg-zinc-100 bg-opacity-70' : '')}>
           <Link href="/cart" className={isActive === 'cart' ? 'pointer-events-none' : ''}>          
             <li className={"cursor-pointer text-4xl " + (isActive === 'cart' ? 'text-yellow-400 dark:text-zinc-500' : '')}><PiShoppingCartFill/></li>          
           </Link>
         </div>
-        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'setting' ? 'bg-zinc-800' : '')}>
+        <div className={'h-full w-full flex items-center justify-center transition-all duration-200 ' + (isActive === 'setting' ? 'dark:bg-zinc-800 bg-zinc-100 bg-opacity-70' : '')}>
           <Link href="/setting" className={isActive === 'setting' ? 'pointer-events-none' : ''}>          
             <li className={"cursor-pointer text-2xl " + (isActive === 'setting' ? 'text-yellow-400 dark:text-zinc-500' : '')}><FaBars /></li>
           </Link>        

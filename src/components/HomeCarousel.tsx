@@ -19,8 +19,7 @@ const category = [
 
 const HomeCarousel = () => {
     const { data, setSearchData } = useAppContext()
-    const filterData = (type: string) => {
-        console.log(type)
+    const filterData = (type: string) => {        
         setSearchData(()=>data.filter((elm)=>elm.category === type))
     }
   return (
