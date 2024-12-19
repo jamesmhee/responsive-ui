@@ -12,14 +12,10 @@ import { RouterProvider } from "./context/RouterContext";
 
 const queryClient = new QueryClient()
 
-interface CustomProps {
-  customProp: number
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactElement<CustomProps> | React.ReactElement<CustomProps>[];
+  children: React.ReactNode;
 }>) {
   const layoutRef = useRef<HTMLDivElement | null>(null) 
   const [scroll,setScroll] = useState(0)
