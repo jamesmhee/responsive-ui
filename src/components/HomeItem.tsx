@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useAppContext } from '@/app/context/AppContext'
 import { MdAttachMoney } from "react-icons/md";
 import Link from 'next/link'
+import { useRouterContext } from '@/app/context/RouterContext'
 
 
 const SkeltonItem = ({length}: {length: number}) =>{
@@ -22,6 +23,7 @@ const SkeltonItem = ({length}: {length: number}) =>{
 
 const HomeItem = () => {
     const { data, isLoading, searchData } = useAppContext()
+    const { setHome } = useRouterContext()
   return (
     <div className='flex flex-wrap gap-2 flex-col mt-10 mb-5 px-2'>
         <h3 className='dark:text-zinc-300'>สินค้าทั้งหมด</h3>
@@ -32,8 +34,8 @@ const HomeItem = () => {
                 searchData && searchData?.length > 0 ? 
                 searchData?.map((elm,index)=>(
                     <div key={index} className='bg-white flex-1 basis-2/5 min-h-[300px] dark:bg-zinc-800 p-2 border rounded-xl justify-between flex-col flex'>
-                        <Link scroll={false} href={`/product/${elm.id}`}>
-                            <Image className='rounded mb-2' width={500} height={500} style={{height: '200px', width: '100%'}} alt={elm.title} src={elm.image}/>
+                        <Link onClick={()=>setHome(`product/${elm.id}`)} scroll={false} href={`/product/${elm.id}`}>
+                            <Image priority className='rounded mb-2' width={500} height={500} style={{height: '200px', width: '100%'}} alt={elm.title} src={elm.image}/>
                             <span className='text-base'>
                                 {elm.title.substring(0, 35)}
                             </span>
@@ -49,7 +51,7 @@ const HomeItem = () => {
                 :
                 data?.map((elm,index)=>(
                     <div key={index} className='bg-white flex-1 basis-2/5 min-h-[300px] dark:bg-zinc-800 p-2 border rounded-xl justify-between flex-col flex'>
-                        <Link scroll={false} href={`/product/${elm.id}`}>
+                        <Link onClick={()=>setHome(`product/${elm.id}`)} scroll={false} href={`/product/${elm.id}`}>
                             <Image className='rounded mb-2' width={500} height={500} style={{height: '200px', width: '100%'}} alt={elm.title} src={elm.image}/>
                             <span className='text-base'>
                                 {elm.title.substring(0, 35)}

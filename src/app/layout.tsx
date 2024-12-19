@@ -6,37 +6,52 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { AppContext, useAppContext } from "./context/AppContext";
-import { useEffect, useRef, useState } from "react";
-import { useFetchProducts } from "@/hooks/useFetchProducts";
+import { AppContext } from "./context/AppContext";
+import React, { useRef, useState } from "react";
+import { RouterProvider } from "./context/RouterContext";
 
 const queryClient = new QueryClient()
+
+interface CustomProps {
+  customProp: number
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactElement<CustomProps> | React.ReactElement<CustomProps>[];
 }>) {
+  const layoutRef = useRef<HTMLDivElement | null>(null) 
+  const [scroll,setScroll] = useState(0)
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) =>{    
+    const target = e?.currentTarget    
+    const scrollTop = target?.scrollTop
+
+    setScroll(scrollTop)
+  }
+
   return (    
     <QueryClientProvider client={queryClient}>
       <AppContext>
-        <html lang="en" suppressHydrationWarning>
-          <body
-            className={`scroll-smooth antialiased w-screen h-dvh max-h-dvh flex flex-col bg-zinc-100 dark:bg-neutral-900 dark:text-zinc-300`}
-          >
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem          
-              disableTransitionOnChange          
-            >        
-              <div className="flex-1 overflow-y-scroll max-w-screen">
-                {children}
-              </div>              
-              <FixedBar/>
-            </ThemeProvider>
-          </body>
-        </html>
+        <RouterProvider>
+          <html lang="en" suppressHydrationWarning>
+            <body
+              className={`scroll-smooth antialiased w-screen h-dvh max-h-dvh flex flex-col bg-zinc-100 dark:bg-neutral-900 dark:text-zinc-300`}
+            >
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem          
+                disableTransitionOnChange          
+              >        
+                <div onScroll={(e)=>handleScroll(e)} ref={layoutRef} className="flex-1 overflow-y-scroll max-w-screen">
+                  {children}
+                </div>              
+                <FixedBar scroll={scroll}/>
+              </ThemeProvider>
+            </body>
+          </html>
+        </RouterProvider>
       </AppContext>
     </QueryClientProvider>
   );

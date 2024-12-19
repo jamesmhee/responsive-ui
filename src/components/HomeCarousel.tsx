@@ -36,12 +36,12 @@ const HomeCarousel = () => {
                         ))
                         : 
                         [...Array(6)].map((elm, index)=>(
-                            <CarouselItem key={index} className="h-44 max-w-[calc(100vw_-_100px)] dark:bg-zinc-800 bg-white shadow-sm border rounded-xl">
+                            <CarouselItem key={index} className="h-44 max-w-[calc(100vw_-_100px)] dark:bg-zinc-700 bg-white shadow-sm border rounded-xl">
                                 <Skeleton className="dark:bg-zinc-800"/>
                             </CarouselItem>
                         ))
                     }                
-                </CarouselContent>            
+                </CarouselContent>
             </Carousel>
         </div>
         <SelectCategory label="Search" placeHolder="Select Category" options={category} onChange={filterData} selectAll={()=>setSearchData([])}/>

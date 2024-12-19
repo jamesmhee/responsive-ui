@@ -11,6 +11,8 @@ interface AppContextProps {
     isError: boolean
     error: unknown 
     filterData: (type: string)=>void
+    onScroll: number
+    setOnScroll: React.Dispatch<SetStateAction<number>>    
 }
 
 export const ContextApp = createContext({} as AppContextProps)
@@ -18,6 +20,7 @@ export const ContextApp = createContext({} as AppContextProps)
 export const AppContext = ({children}: {children: React.ReactNode}) =>{    
     const [data, setData] = useState<ProductsProps[]>([])
     const [searchData, setSearchData] = useState<ProductsProps[]>([])
+    const [onScroll, setOnScroll] = useState(0)
     const { data:productsData, isLoading, isError, error } = useFetchProducts(data?.length > 0)
     useEffect(()=>{
         if(productsData){
@@ -41,14 +44,17 @@ export const AppContext = ({children}: {children: React.ReactNode}) =>{
         isLoading,
         isError,
         error,
-        filterData
+        filterData,
+        onScroll,
+        setOnScroll
     }), [
         data,
         searchData,
         isLoading,
         isError,
         error,
-        filterData
+        filterData,
+        onScroll
     ])
     return (
         <ContextApp value={store}>

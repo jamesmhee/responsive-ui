@@ -1,7 +1,7 @@
 'use client'
 import { useFetchProduct } from '@/hooks/useFetchProduct'
 import { useParams } from 'next/navigation'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, use} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdAttachMoney } from "react-icons/md";
@@ -9,11 +9,15 @@ import { IoChevronBack } from "react-icons/io5";
 import { ProductsProps } from '@/app/interface/Products'
 import { FaStar } from "react-icons/fa";
 import Loading from '@/components/ui/loading'
+import { useRouterContext } from '@/app/context/RouterContext'
 
+interface ParamsProps {
+  id: string
+}
 
-const page = () => {
-  const params = useParams()
-  const id = params?.id?.toString()
+const page = ({params}: {params: Promise<ParamsProps>}) => {
+  const { setHome } = useRouterContext()    
+  const { id } = use(params)
   const [ data,setData ] = useState<ProductsProps>({} as ProductsProps)
   const { data:Product, isLoading, error, isError } = useFetchProduct(id)
   useEffect(()=>{
@@ -24,8 +28,8 @@ const page = () => {
   }, [Product])    
   return (
     <>      
-        <div className='sticky top-0 bg-yellow-400 dark:bg-zinc-800 p-5 flex justify-between items-center'>
-          <Link scroll={false} href="/">
+        <div className='  sticky top-0 bg-yellow-400 dark:bg-zinc-800 p-5 flex justify-between items-center'>
+          <Link onClick={()=>setHome('/')} scroll={false} href="/">
             <div className='text-zinc-50 dark:text-zinc-300 bg-yellow-500 dark:bg-zinc-950 rounded-full p-2 w-full'>
               <IoChevronBack/>
             </div>
