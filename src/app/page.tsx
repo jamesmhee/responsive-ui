@@ -7,16 +7,6 @@ import { useAppContext } from "./context/AppContext";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { onScroll, setOnScroll } = useAppContext()
-  const handleScroll = (e: React.UIEvent) =>{
-    const target = e?.currentTarget as HTMLDivElement    
-    const scrollTop = target?.scrollTop
-    if(scrollTop >= 189){
-      
-    }
-    console.log(scrollTop)
-  }
-
   return (
     <>
       <HomeTop/>
