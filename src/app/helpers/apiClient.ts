@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_STORE_ENDPOINT,
-  timeout: 10000,
+  timeout: 20000,
   headers: {
     'Content-Type': 'application/json',
   },
